@@ -3,7 +3,7 @@
  * @Date: 2026-01-14 13:22:50
  */
 // app/comments/page.tsx（服务器组件，表单直连 Server Action）
-import { addComment } from '@/app/comments/actions'
+import { addComment } from '@/app/[locale]/comments/actions'
 
 export default function CommentsPage() {
   return (

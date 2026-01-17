@@ -5,7 +5,7 @@
 // components/CommentClientForm.tsx（客户端组件，用事件/副作用调用 Server Action）
 "use client"
 import { useTransition, useState } from 'react'
-import { addComment } from '@/app/comments/actions'
+import { addComment } from '@/app/[locale]/comments/actions'
 
 export default function CommentClientForm() {
   const [content, setContent] = useState('')
