@@ -1,39 +1,36 @@
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages, setRequestLocale} from 'next-intl/server';
-import type {ReactNode} from 'react';
-import '../globals.css';
-import {pickMessages} from '../../i18n/pick';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { ClientProviders } from '../providers';
+import { Suspense } from 'react';
 
-export async function generateMetadata({params}: {params: {locale: string}}) {
-  const {locale} = await params;
 
-  return {
-    alternates: {
-      languages: {
-        zh: '/zh',
-        en: '/en',
-        // jp: 'jp'
-      }
-    },
-    title: locale === 'zh' ? '我的博客' : 'My Blog'
-  };
+// 必须 export
+export function generateStaticParams() {
+  return [
+    { locale: 'zh' },
+    { locale: 'en' }
+  ];
 }
 
 export default async function LocaleLayout({
   children,
   params
 }: {
-  children: ReactNode;
-  params: Promise<{locale: string}>;
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  const {locale} = await params;
+  const { locale } = await params;
   setRequestLocale(locale);
-
+  const messages = await getMessages({ locale });
 
   return (
-        <NextIntlClientProvider>
-              {children}
-        </NextIntlClientProvider>
-      
+    <html lang={locale} suppressHydrationWarning>
+      <body>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ClientProviders locale={locale} messages={messages}>
+            {children}
+          </ClientProviders>
+        </Suspense>
+      </body>
+    </html>
   );
 }

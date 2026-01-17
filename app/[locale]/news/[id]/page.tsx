@@ -4,6 +4,8 @@
  */
 // 📄 文件路径：app/news/[id]/page.tsx
 
+import { useState } from "react";
+
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -33,9 +35,6 @@ export default async function NewsPage({ params }: Props) {
       <div className="mb-4 text-red-600 font-bold uppercase tracking-wider">News (ISR - 60s)</div>
       <h1 className="capitalize">{news.title}</h1>
       <p>{news.body}</p>
-      <div className="text-xs text-gray-400 mt-8">
-        Last Updated: {new Date().toLocaleTimeString()}
-      </div>
     </div>
   );
 }

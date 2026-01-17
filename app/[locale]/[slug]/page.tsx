@@ -10,7 +10,6 @@ type Props = {
 
 // 1. 模拟数据获取函数
 async function getPost(slug: string) {
-  console.log(`[Server] Fetching post: ${slug} at ${new Date().toISOString()}`);
   // 使用真实的公共 API
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`, {
     next: {
@@ -40,9 +39,6 @@ export default async function BlogPost({ params }: Props) {
   return (
     <article className="prose lg:prose-xl mx-auto mt-10">
       <h1 className="capitalize">{post.title}</h1>
-      <div className="text-gray-500 text-sm mb-4">
-        发布时间: 2024-01-01 | 生成时间: {new Date().toLocaleTimeString()}
-      </div>
       <p>{post.body}</p>
     </article>
   );
