@@ -4,7 +4,6 @@
  */
 // 📄 文件路径：app/news/[id]/page.tsx
 
-import { useState } from "react";
 
 type Props = {
   params: Promise<{ id: string }>;
