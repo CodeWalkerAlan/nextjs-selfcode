@@ -1,7 +1,11 @@
+/*
+ * @Author: zuo
+ * @Date: 2026-01-17 14:15:26
+ */
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ClientProviders } from '../providers';
 import { Suspense } from 'react';
-
+import "../globals.css"
 
 // 必须 export
 export function generateStaticParams() {
